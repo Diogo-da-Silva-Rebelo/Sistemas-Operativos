@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "API.h"
 
 /* Guião 0: revisão de conceitos em C
  * Conceitos fundamentais:
