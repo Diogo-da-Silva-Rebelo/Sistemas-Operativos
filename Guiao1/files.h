@@ -17,4 +17,12 @@ ssize_t write(int fildes, const void *buf, size_t nbyte);
 off_t lseek(int fd, off_t offset, int whence);
 close(int fildes);
 */
+#include <stdlib.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <fcntl.h>
+
+ssize_t myreadln(int fd, char* line, size_t size);
+ssize_t myreadln2(int fd, char* line, size_t size);
+
 #endif //SISTEMAS_OPERATIVOS_FILES_H
