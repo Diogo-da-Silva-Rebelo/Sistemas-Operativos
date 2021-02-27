@@ -48,7 +48,7 @@ int main(){
         char line_number[LINE_SIZE];
         sprintf(line_number,"%*d ", 5, i++);
         write(STDOUT_FILENO, line_number, strlen(line_number));
-        write(STDOUT_FILENO, line_buffer,bytes_read);
+        write(STDOUT_FILENO, line_buffer, bytes_read);
     }
 
     return 0;
