@@ -16,8 +16,8 @@ int open(const char *path, int oflag [, mode]);
 ssize_t read(int fildes, void *buf, size_t nbyte);
 ssize_t write(int fildes, const void *buf, size_t nbyte);
 off_t lseek(int fd, off_t offset, int whence);
-close(int fildes);
-*/
+close(int fildes);*/
+
 #include <stdlib.h>
 #include <sys/types.h>
 #include <unistd.h>
