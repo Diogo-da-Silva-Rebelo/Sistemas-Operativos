@@ -18,7 +18,7 @@ int search(int fd, char *name){
 }
  */
 
-int main(int argc, char const *argv[]){
+int main(int argc, char const *argv[]) {
 
     /* Ideias a desenvolver:
      * -> 2 comandos que permitam inserir e alterar dados de pessoas, num determinado ficheiro.
@@ -26,46 +26,35 @@ int main(int argc, char const *argv[]){
      * -> Programar a sua alteração e inserção;
      * -> Não esquecer de utilizar o stdin e stdout, pois é a partir daí que os comandos serão utilizados! */
 
-    int fd;
-    void *buffer_read = malloc(BUF_SIZE);
-    int bytes_read;
-    Pessoa pessoa;
-
-    if (argc != 3) {
-        perror("Modo de inserção desrespeitado! ");
+    if (argc != 4) {
+        perror("Modo de inserção desrespeitado!\n");
         return 1;
     }
 
-    else {
-        //Vamos inserir a identificação no ficheiro.
-        if (!strcmp(argv[2],"-i")) {
-            fd = open("id.txt", O_RDWR | O_CREAT | O_TRUNC, 0640);
-            if (fd < 0) {
-                perror("Erro: não foi possível criar ficheiro de registo");
-                return 1;
-            }
-            system("clear");
-            puts("Modo de inserção.");
+    int fd;
+    Pessoa pessoa;
 
-            //verificar se o nome já está na lista -> implementar
-            strcpy(pessoa.nome, argv[2]);
-            pessoa.idade = atoi(argv[3]);
+    if (!strcmp(argv[2], "-i")) {
 
-
-            while(read(fd, &pessoa, sizeof(struct pessoa)) > 0) {
-                printf("%s - %d\n", pessoa.nome, pessoa.idade);
-            }
-            puts("Inserção concluida com sucesso!");
-            //verificar onde inserir o próximo nome
-
+        fd = open("id.txt", O_WRONLY | O_CREAT | O_APPEND | S_IRUSR | S_IWUSR, 0640);
+        if (fd == -1) {
+            perror("Erro: não foi possível criar ficheiro de registo");
+            return 1;
         }
 
-        if (!strcmp(argv[2],"-u")){
+        system("clear");
+        puts("Modo de inserção.");
 
-        }
 
+        strcpy(pessoa.nome, argv[2]);
+        pessoa.idade = atoi(argv[3]);
+
+        write(fd, &pessoa, sizeof(struct Pessoa));
+        close(fd);
+     /*   int pos = lseek(fd, sizeof(struct Pessoa), SEEK_CUR);
+        pos = pos / sizeof(struct Pessoa);
+        printf("registo nº %d \n", pos);*/
     }
-    close(fd);
+    //if (!strcmp(argv[2],"-u"))
+    return 0;
 }
-
-
