@@ -38,7 +38,11 @@ int main(){
  * -> 1. Pretende-se esperar que o utilizador escreva;
  * -> 2. Imprimir a linha em questão e dar enter;
  * -> 3. Imprimir a linha, um ponto seguido do que o utilizador escreveu e dar um enter;
- * -> 4. Fazer isto até que o utilizador queria sair.*/
+ * -> 4. Fazer isto até que o utilizador queria sair.
+ * Obs: sites com informações importantes:
+ * 1. https://stackoverflow.com/questions/9937052/what-is-the-difference-between-d-and-d-in-c-language
+ * 2. https://www.tutorialspoint.com/c_standard_library/c_function_sprintf.htm
+ * 3. https://www.tutorialspoint.com/c_standard_library/c_function_strcspn.htm */
 
     void *line_buffer = malloc(BUF_SIZE);
     int bytes_read;
