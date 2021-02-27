@@ -13,7 +13,7 @@
 typedef struct pessoa{
     char nome[120];
     int idade;
-} Person;
+} Pessoa;
 
 /* O_RDONLY, O_WRONLY, O_CREAT, O_*
 int open(const char *path, int oflag [, mode]);
