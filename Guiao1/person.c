@@ -55,6 +55,22 @@ int atualizaPessoa(int fd, const char *nome, int idade){
 
 int novaIdade(int fd, const char *nome, int idade){
     puts("Modo de atualização 2. ");
+
+    if(fd == -1) {
+        perror("ERROR - open file");
+        return 1;
+    }
+
+    PESSOA p1;
+    int bytes_read;
+    lseek(fd,0,SEEK_SET);
+    while ((bytes_read = read(fd,&p1, sizeof(struct Pessoa))) > 0) {
+        if (!bytes_read) return -1;
+        if (!strcmp(p1.nome,nome)) {
+            p1.idade = idade;
+            lseek(fd,-sizeof(struct pessoa),SEEK_CUR);
+            write(fd,&p1, sizeof(struct pessoa));
+        }
 }
 
 int main(int argc, char const *argv[]) {
