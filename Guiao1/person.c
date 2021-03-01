@@ -23,6 +23,8 @@ int novaPessoa(int fd, const char *nome, int idade){
         return 1;
     }
 
+    puts("Modo de inserção. ");
+
     PESSOA p1;
     p1.idade = idade;
     strcpy(p1.nome,nome);
@@ -31,11 +33,28 @@ int novaPessoa(int fd, const char *nome, int idade){
 }
 
 int atualizaPessoa(int fd, const char *nome, int idade){
+    if(fd == -1) {
+        perror("ERROR - open file");
+        return 1;
+    }
 
+    puts("Modo de atualização 1. ");
+
+    PESSOA p1;
+    int bytes_read;
+    lseek(fd,0,SEEK_SET);
+    while ((bytes_read = read(fd,&p1, sizeof(struct Pessoa))) > 0) {
+        if (!bytes_read) return -1;
+        if (!strcmp(p1.nome,nome)) {
+            p1.idade = idade;
+            strcpy(p1.nome,nome);
+            lseek(fd,-sizeof(struct pessoa),SEEK_CUR);
+            write(fd,&p1, sizeof(struct pessoa));
+        }
 }
 
 int novaIdade(int fd, const char *nome, int idade){
-
+    puts("Modo de atualização 2. ");
 }
 
 int main(int argc, char const *argv[]) {
