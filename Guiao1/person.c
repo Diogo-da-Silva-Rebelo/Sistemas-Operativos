@@ -48,7 +48,9 @@ int atualizaPessoa(int fd, const char *nome, int idade) {
     }
 }
 
+int atualizaRegisto(int fd, const char *nome, int idade){
 
+}
 void verFicheiro(int fd, const char *nome, int idade){
     PESSOA p1; //Cria pessoa
     lseek(fd,0,SEEK_SET);
@@ -72,7 +74,7 @@ int main(int argc, char const *argv[]) {
         return 1;
     }
 
-    int fd = open("registo", O_RDWR | O_CREAT, 0640);
+    int fd = open("registo", O_RDWR | O_CREAT | O_APPEND, 0640);
 
     const char *nome = argv[2];
     int idade = atoi(argv[3]);
@@ -84,6 +86,8 @@ int main(int argc, char const *argv[]) {
         case 'u':
             atualizaPessoa(fd, nome, idade);
             break;
+        case 'r':
+            atualizaRegisto(fd, nome, idade);
         default:
             puts("Erro: modo inválido");
             break;
