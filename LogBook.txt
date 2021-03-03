@@ -1,4 +1,6 @@
 Conceitos Principais:
+
+SO - Aula de apresentação - 22 fev
 - Raramente sabemos o input do nosso programa, daí recorrermos a tipos de dados em grande quantidade, como o Gigabyte.
 - Passagem de código assembly para código máquina implica a conversão de instruções em endereços.
 - Não podemos voltar a recompilar um programa, ao mudar a posição de memória deste programa, pois, nesse caso, pretende
@@ -9,3 +11,5 @@ variáveis e estado.
 completo e pronto para consumi-los. Assim, recetor e dador de dados podem trabalhar ao mesmo tempo. Isto é possivel numa
 máquina com vários cores. É o ideal num processo.
 - A partir do PID conseguimos saber se o utilizador tem ou não privilégios.
+
+

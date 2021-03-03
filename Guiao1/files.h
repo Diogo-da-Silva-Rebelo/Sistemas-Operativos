@@ -11,6 +11,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <ctype.h>
+#include <errno.h>
 
 //Estrutura de dados para o ficheiro person.c
 typedef struct Pessoa{

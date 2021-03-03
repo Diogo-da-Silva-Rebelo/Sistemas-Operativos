@@ -20,6 +20,7 @@ ssize_t myreadln(int fd, char *line, size_t size){
 ssize_t myreadln2(int fd, char* line, size_t size) {
     ssize_t bytes_read = read(fd, line, size);
     if (!bytes_read) return 0;
+
     //definir tamanho da linha
     size_t length_line = strcspn(line, "\n") + 1; //retorna o tamanho entre o primeiro elemento de str1 e str2
     if (bytes_read < length_line) length_line = bytes_read;
@@ -42,16 +43,20 @@ int main(){
  * Obs: sites com informações importantes:
  * 1. https://stackoverflow.com/questions/9937052/what-is-the-difference-between-d-and-d-in-c-language
  * 2. https://www.tutorialspoint.com/c_standard_library/c_function_sprintf.htm
- * 3. https://www.tutorialspoint.com/c_standard_library/c_function_strcspn.htm */
+ * 3. https://www.tutorialspoint.com/c_standard_library/c_function_strcspn.htm
+ * Quando chegamos ao final do ficheiro, a função read retorna simplesmente 0. */
 
-    void *line_buffer = malloc(BUF_SIZE);
-    int bytes_read;
-
+    char *line_buffer = (char *) malloc(BUF_SIZE * sizeof (char));
+    int bytes_read = 0;
+    int newline = 1;
     int i = 1;
     while ((bytes_read = myreadln2(0,line_buffer,BUF_SIZE)) > 0) {
         char line_number[LINE_SIZE];
-        sprintf(line_number,"%*d ", 5, i++);
-        write(STDOUT_FILENO, line_number, strlen(line_number));
+
+        if (newline && line_buffer[0] != '\n') {
+            sprintf(line_number, "%*d ", 5, i++);
+            write(STDOUT_FILENO, line_number, strlen(line_number));
+        }
         write(STDOUT_FILENO, line_buffer, bytes_read);
     }
 

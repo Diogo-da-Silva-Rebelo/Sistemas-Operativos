@@ -9,15 +9,9 @@
  *  -> $ pessoas -i "José Mourinho" 55
  *  -> $ pessoas -u "José Mourinho" 56 */
 
-/* Implmentação de procura num ficheiro:
-int search(int fd, char *name){
-    int t;
-    if (fd <0) return 1;
- //using strung cmp!!
-    while ()
-} */
 
 int novaPessoa(int fd, const char *nome, int idade){
+    int index;
     if (fd == -1) {
         perror("Não foi possível abrir o ficheiro! ");
         return 1;
@@ -53,6 +47,7 @@ int atualizaPessoa(int fd, const char *nome, int idade) {
         }
     }
 }
+
 
 void verFicheiro(int fd, const char *nome, int idade){
     PESSOA p1; //Cria pessoa

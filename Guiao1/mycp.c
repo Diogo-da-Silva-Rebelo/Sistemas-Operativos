@@ -13,6 +13,7 @@ int main(int argc, char *argv[]){
 
     if (desc_origin == -1) {
         perror("open");
+        printf("open error: %d texto: %s\n", errno, strerror(errno));
         return -1;
     }
     if (desc_dest == -1){
@@ -32,3 +33,7 @@ int main(int argc, char *argv[]){
 
     return 0;
 }
+/* Como temos de assumir que o ficheiro não cabe todo em memória, usamos malloc para alocar dinamicamente memória;
+ * Ao fazer variar o tamanho do buffer,verificamos que o tempo de execução é tanto maior quanto menor o tamanho do buffer;
+ * O aceso ao disco é mais lento, logo, por casa system call, mais lento o programa fica. Assim, com um BUF_SIZE grande,
+ * vamos ter menos invocações das nossas funções myreadln e myreadln2, pelo que é executado o programa em menos tempo! */
