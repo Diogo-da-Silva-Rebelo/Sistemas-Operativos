@@ -12,4 +12,39 @@ completo e pronto para consumi-los. Assim, recetor e dador de dados podem trabal
 máquina com vários cores. É o ideal num processo.
 - A partir do PID conseguimos saber se o utilizador tem ou não privilégios.
 
+SO T - 8 mar
+- Se tivermos 1 programa em execucao, olhamos para a memória e já temos um sistema operativo;
+- O modo protegido é um bit de estado (0/1) e determina de que lado da memória nos encontramos;
+- Interrupções são hardware e algo interno ao processador de gera uma interrupção, estas são usadas pelo SO para alterar
+program counter;
+- A interrupção vai servir para o SO voltar a ter o controlo e atender diversas funções que lhe foram declarados;
+- Interrupções são muito usadas para gerir input/output;
+- Gestão de processos:
+ -> Card | CPU | Scanner/Print;
+ -> Aproveita o paralelismo entre hardware;
+ -> Se quisermos ler de um periférico, temos de pedir ao SO;
+ -> Uma linguagem de programação que usa funções de uma library, elas executam em modo utilizador;
+ -> Estas system.calls alteram o modo de instrução para modo protegido;
+ -> o SO é o código do lado esquerdo do desenho e já aglomera duas atividades de leitura/escrita;
+ -> Como ter vários programas em execução?
+  -> Falta gerir a memória (qual a mem ocupada por cada prog);
+  -> No caso anterior, a gestão de memória é mais complicada e necessita de uma unidade funcional para isso;
+  -> Leva a multiprogramação (multiprocesso em execução):
+   -> Pedimos ao hardware que garanta proteção do espaço de endereçamento, complicando mais a gestão de mem;
+   -> Se o prog1 quiser aceder a um end. do prog 1, o end que mem deve ser intersetado com o aviso de que o end não lhe
+   pertence.
+   -> Surge o gestor de mem_
+-> A parte do SO que lida com o proximo processo a executar e qunto tempo de execução chama-se o gestor de processos;
+-> Onde guardar os progs ? Para poder ter mais do que 1 prog em execução ao mesmo tempo?
+ -> com transferencia para a banda magnética, mas de modo muito lento;
+ -> com um disco interno, de um modo direto e mais rápido e prático;
+-> Tem-se também um gestor de ficheiros (FISH);
+-> É provável que os dados de cada programa não sejam absorvidos a 100 pc pelo CPU
+-> Como devolver a conveniência aos users?
+ -> Volta quando os users têm o seu terminal. Então cada user usa o terminal para interagir com o seu programa
+ -> Um SO vai ter gestores para cada um dos módulos referidos anteriormente;
+ -> Que estratégia de gestão de recursos existem?
+
+- Processo: é um prog em execução.
+- Dois programas diferentes a executar o mesmo processo, pode gerar problemas.
 
