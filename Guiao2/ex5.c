@@ -1,0 +1,17 @@
+#include <unistd.h>
+#include <stdio.h>
+#include <sys/wait.h>
+
+int main(int argc, char* argv[]){
+    int i;
+    int status;
+
+    for (i=0; i<3; i++){
+        int pid = fork();
+        if(pid==0){
+            printf("%d\n", i);
+            _exit(i);
+        }
+    }
+    return 0;
+}
