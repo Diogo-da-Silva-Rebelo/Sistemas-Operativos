@@ -2,7 +2,6 @@
 #define SISTEMAS_OPERATIVOS_FILES_H
 #define BUF_SIZE 1000
 #define LINE_SIZE 100
-#include <sys/types.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdlib.h>
