@@ -7,13 +7,13 @@ int main(int argc, char** argv) {
      */
 
     int ret;
-    char * exec_args[] ={"/bin/ls","l",NULL};
-    ret = execl("/bin/ls","/bin/ls","-l",NULL);
-    printf("ola %d\n", ret);
+    ret = execlp("ls","-l",NULL);
+    printf("Erro. Resultado do ret = %d\n", ret);
     perror("reached return");
 
     /* Existiriam outras formas de chamar o comando -ls
-     * -> ret = execlp("/bin/ls","/bin/ls","-l",NULL);
+     * char * exec_args[] = {"/bin/ls","l", NULL};
+     * -> ret = execl("/bin/ls","-l", NULL);
      * -> ret = execv("/bin/ls", exec_args);
      * -> ret = execvp("ls", exec_args)
      */
