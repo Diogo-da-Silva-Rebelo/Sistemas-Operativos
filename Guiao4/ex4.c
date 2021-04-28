@@ -20,8 +20,8 @@ int main (int argc, char* argv[]){
         output_fd = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
     else _exit(1);
 
-    dup2(input_fd);
-    dup2(output_fd);
+    dup(input_fd);
+    dup(output_fd);
 
     argv[argc] = NULL;
 
