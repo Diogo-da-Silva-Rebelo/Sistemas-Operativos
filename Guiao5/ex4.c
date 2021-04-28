@@ -29,11 +29,15 @@ int main (int argc, char const *argv[]) {
         case 0:
             close(pipe_fd[0]);
             dup2(pipe_fd[1],STDOUT_FILENO);
-            execlp("ls","ls","/etc", NULL);
+            close(pipe_fd[1]);
+            execlp("/bin/ls","ls","/etc", NULL);
             _exit(0);
         default:
-            close(pipe_fd[1]);
+            wait(&status);
     }
+    close(pipe_fd[1]);
+    dup2(pipe_fd[0], STDIN_FILENO);
+    close(pipe_fd[0]);
 
     //Filho1
     switch (fork()) {
@@ -41,15 +45,12 @@ int main (int argc, char const *argv[]) {
             perror("something went wrong with fork");
             return -1;
         case 0:
-            close(pipe_fd[0]);
-            dup2(pipe_fd[0], STDIN_FILENO);
-            execlp("wc", "wc", "-l", NULL);
+            execlp("/bin/wc", "wc", "-l", NULL);
             _exit(0);
         default:
-            close(pipe_fd[0]);
+            wait(&status);
     }
-    if (wait(&status) == -1) puts("Error");
-    if (wait(&status) == -1) puts("Error");
+
     //para testar : ./ex4
     //4 comandos , 3 pipes
     // nº pipes = nºcomandos - 1
