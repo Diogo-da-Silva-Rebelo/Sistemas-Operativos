@@ -18,7 +18,15 @@ int main(int argc, char* argv[]){
         }
         else {
             int terminated_pid = wait(&status);
-            printf("[pai] process %d exited. exit code: %d.\n\n", terminated_pid, WEXITSTATUS(status));
+
+            //verificar se o processo filho terminou com sucesso
+            if(pid!= -1 && WIFEXITED(status)){
+                puts("Filho terminou com sucesso!");
+                int const exit_status = WEXITSTATUS(status);
+                printf("Exit_status do filho: %d\n", exit_status);
+            }
+            //o pai só escreve isto quando o último processo filho termina!
+            if (i == 10) printf("[pai] process %d exited. exit code: %d.\n\n", terminated_pid, WEXITSTATUS(status));
         }
     }
     return 0;
