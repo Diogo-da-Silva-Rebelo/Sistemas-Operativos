@@ -3,30 +3,17 @@
 efeito, os filhos podem imprimir o seu PID e o do seu pai, e finalmente, terminarem a sua execução com
 um valor de saı́da igual ao seu número de ordem (e.g.: primeiro filho criado termina com o valor 1). O
 pai deverá imprimir o código de saı́da de cada um dos seus filhos. */
-int main(int argc, char* argv[]){
-    int i;
-    int status;
-
-    for (i=1; i<11; i++){
-        pid_t pid;
-        if((pid = fork()) == 0) {
-            pid_t child_pid = getpid();
-            pid_t father_pid = getppid();
-            printf("[filho] O PID do processo filho é %d.\nO pid do processo pai é %d.\n", child_pid, father_pid);
-            printf("%d\n\n", i);
+int main(int argc, char const *argv[]) {
+    for (int i = 1; i < 11; i++) {
+        if (fork() == 0) {
+            printf("PID Filho: %d\n", getpid());
+            printf("PID Pai: %d\n", getppid());
             _exit(i);
         }
         else {
-            int terminated_pid = wait(&status);
-
-            //verificar se o processo filho terminou com sucesso
-            if(pid!= -1 && WIFEXITED(status)){
-                puts("Filho terminou com sucesso!");
-                int const exit_status = WEXITSTATUS(status);
-                printf("Exit_status do filho: %d\n", exit_status);
-            }
-            //o pai só escreve isto quando o último processo filho termina!
-            if (i == 10) printf("[pai] process %d exited. exit code: %d.\n\n", terminated_pid, WEXITSTATUS(status));
+            int exit_status;
+            wait(&exit_status);
+            printf("Exit: %d\n", WEXITSTATUS(exit_status));
         }
     }
     return 0;

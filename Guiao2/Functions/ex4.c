@@ -13,7 +13,11 @@ int main(int argc, char* argv[]) {
             _exit(i);
         }
     }
-    pid_t terminated_pid = wait(&status);
-    printf("[pai] process %d exited. exit code: %d\n", terminated_pid, WEXITSTATUS(status));
+
+    while(wait(&status) != -1) {
+        //printf("status: %d\n", status);
+        printf("Exit_status do processo-filho: %d\n", WEXITSTATUS(status));
+    }
+
     return 0;
 }
