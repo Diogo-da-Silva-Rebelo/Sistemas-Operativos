@@ -12,8 +12,8 @@ int main (int argc, char* argv[]){
     //setbuf(stdout, NULL); //Alternativa a fflush: desliga completamente o buffering.
 
     int ifd = open("/etc/passwd", O_RDONLY);
-    int ofd = open("saida.txt", O_CREAT | O_TRUNC | O_WRONLY);
-    int efd = open("erros.txt", O_CREAT | O_TRUNC | O_WRONLY);
+    int ofd = open("saida.txt", O_CREAT | O_TRUNC | O_WRONLY, 0644);
+    int efd = open("erros.txt", O_CREAT | O_TRUNC | O_WRONLY, 0644);
 
     res = dup2(ifd,0);
     res = dup2(ofd,1);
