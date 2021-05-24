@@ -13,7 +13,7 @@ int main(int argc, char* argv[]){
         printf("O PID do filho é %d.\nO pid do pai é %d.\n", child_pid, father_pid);
         if(fork() != 0){
             int terminated_pid = wait(&status);
-            printf("Process %d exited, exit code %d.\n", terminated_pid, WEXITSTATUS(status));
+            printf("[PAI] Process %d exited, exit code %d.\n", terminated_pid, WEXITSTATUS(status));
             _exit(i);
         }
     }
