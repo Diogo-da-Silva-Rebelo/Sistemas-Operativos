@@ -20,6 +20,7 @@ int my_system(char* command) {
         int exec_ret = execvp(args[0], args);
         _exit(exec_ret);
     }
+    return;
 }
 
 int main(int argc, const char * argv[]) {

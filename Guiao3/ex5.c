@@ -5,6 +5,7 @@ argumentos da linha de comando. Considere os executáveis sem quaisquer argument
 programa deverá esperar pelo fim da execução de todos processos por si criados. */
 
 int main(int argc, const char* argv[]) {
+    //EX: ./programa <executavel1> <executavel2> ...
     for(size_t i = 1; i < argc; i++)
         if(fork() == 0)
             execlp(argv[i], argv[i], NULL);
