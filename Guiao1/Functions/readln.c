@@ -26,6 +26,7 @@ ssize_t myreadln2(int fd, char* line, size_t size) {
     if (bytes_read < length_line) length_line = bytes_read;
     line[length_line] = 0;
 
+    //o fd vai para o fim da linha para eu continuar a ler a partir daí!
     lseek(fd, length_line, SEEK_CUR);
     return length_line;
 }
