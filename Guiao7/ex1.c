@@ -42,7 +42,7 @@ int main(int argc, char const *argv[]){
     }
 
     //O alarm manda uma alarm de 1 em 1 segundo
-    //mal é registado o códugo fica em pause
+    //mal é registado o código fica em pause
     //o ctrl+c quebra o pause e volta ao alarm
     //se o antigo ainda não acabou, então o novo substitui-lo
 
